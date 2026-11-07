@@ -1,0 +1,3389 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HafiRedőny – Árajánlatkészítő</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #292929;
+        }
+
+        /* FEJLÉC */
+
+        header {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 40px 20px 30px;
+            border-bottom: 1px solid #e5e0d8;
+        }
+
+        .logo {
+            font-size: 75px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #b58a48;
+        }
+
+        .subtitle {
+            font-size: 34px;
+            letter-spacing: 5px;		
+            color: #777777;
+            margin-top: 7px;
+            text-transform: uppercase;
+        }
+
+        .header-line {
+            width: 55px;
+            height: 2px;
+            background-color: #b58a48;
+            margin: 20px auto;
+        }
+
+        .page-title {
+            font-size: 30px;
+            font-weight: 500;
+	font-weight: bold;
+            color: #333333;
+            letter-spacing: 1px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">HafiRedőny</div>
+
+        <div class="subtitle">
+            Árnyékolástechnika
+        </div>
+
+        <div class="header-line"></div>
+
+        <div class="page-title">
+            Árajánlatkészítő
+        </div>
+</header>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<!-- ÜGYFÉLADATOK PANEL -->
+
+<section class="panel">
+
+    <h2 class="panel-title">Ügyféladatok</h2>
+
+    <p class="panel-description">
+        Az árajánlat elkészítéséhez szükséges adatok.
+    </p>
+
+    <div class="form-grid">
+<div class="form-group full-width">
+    <label for="offerIdentifier">Azonosító</label>
+    <input type="text" id="offerIdentifier"
+           placeholder="Pl. HF-105">
+</div>
+
+        <div class="form-group full-width">
+            <label for="customerName">Ügyfél neve</label>
+            <input type="text" id="customerName"
+                   placeholder="Pl. Kovács Péter">
+        </div>
+
+        <div class="form-group full-width">
+            <label for="customerAddress">Cím</label>
+            <input type="text" id="customerAddress"
+                   placeholder="Irányítószám, város, utca, házszám">
+        </div>
+
+        <div class="form-group">
+            <label for="customerPhone">Telefonszám</label>
+            <input type="tel" id="customerPhone"
+                   placeholder="+36 30 123 4567">
+        </div>
+
+        <div class="form-group">
+            <label for="customerEmail">E-mail cím</label>
+            <input type="email" id="customerEmail"
+                   placeholder="pelda@email.hu">
+        </div>
+
+        <div class="form-group full-width">
+            <label for="offerDate">Árajánlat kelte</label>
+            <input type="date" id="offerDate">
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    .panel {
+        text-align: left;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 32px;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+    }
+
+    .panel-title {
+        font-size: 25px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #333333;
+        text-align: left;
+    }
+
+    .panel-description {
+        font-size: 15px;
+        color: #888888;
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 22px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        text-align: left;
+    }
+
+    .form-group.full-width {
+        grid-column: span 2;
+    }
+
+    .form-group label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #444444;
+    }
+
+    .form-group input {
+        width: 100%;
+        min-height: 52px;
+        padding: 13px 16px;
+        font-size: 16px;
+        border: 1px solid #d8d8d8;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #333333;
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: #b58a48;
+        box-shadow: 0 0 0 3px rgba(181,138,72,0.12);
+    }
+
+    .form-group input::placeholder {
+        color: #aaaaaa;
+    }
+
+    @media (max-width: 650px) {
+        .panel {
+            padding: 22px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 22px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 1;
+        }
+    }
+</style>
+
+<script>
+    document.getElementById("offerDate").value =
+        new Date().toLocaleDateString("en-CA");
+</script>
+<br>
+<br>
+<br>
+<br>
+<!-- ÁRAZÁSI BEÁLLÍTÁSOK -->
+
+<section class="pricing-panel">
+
+    <h2 class="pricing-title">Árazási beállítások</h2>
+
+    <p class="pricing-description">
+        A beszerzési árak és az átváltás beállítása.
+    </p>
+
+    <div class="pricing-grid">
+
+        <div class="pricing-group">
+            <label for="eurRate">EUR árfolyam (Ft)</label>
+            <input
+                type="number"
+                id="eurRate"
+                value="395"
+                min="1"
+                step="1"
+            >
+            <small>1 EUR átváltási értéke forintban.</small>
+        </div>
+
+        <div class="pricing-group">
+            <label for="supplierVat">Gyári beszerzési ÁFA (%)</label>
+            <input
+                type="number"
+                id="supplierVat"
+                value="27"
+                min="0"
+                max="100"
+                step="1"
+            >
+            <small>Csak a gyári nettó ár bruttósításához.</small>
+        </div>
+
+        <div class="pricing-group full-width">
+            <label for="priceType">Gyári árlista típusa</label>
+            <select id="priceType">
+                <option value="net" selected>Nettó árak – ÁFA hozzáadása szükséges</option>
+                <option value="gross">Bruttó árak – ÁFA már benne van</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="pricing-info">
+        <strong>Fontos információ</strong>
+        <p>
+            A gyári beszerzési ÁFA a költség részét képezi.
+            Az ügyfélnek készülő árajánlatban kizárólag
+            a végleges fizetendő ár jelenik meg.
+        </p>
+    </div>
+
+</section>
+
+<style>
+    .pricing-panel {
+        background: #ffffff;
+        border: 1px solid #e5e5e5;
+        border-radius: 12px;
+        padding: 32px;
+        margin-top: 25px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+        text-align: left;
+    }
+
+    .pricing-title {
+        font-size: 25px;
+        margin-bottom: 10px;
+        color: #333333;
+    }
+
+    .pricing-description {
+        font-size: 15px;
+        color: #888888;
+        margin-bottom: 30px;
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 22px;
+    }
+
+    .pricing-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pricing-group.full-width {
+        grid-column: span 2;
+    }
+
+    .pricing-group label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #444444;
+    }
+
+    .pricing-group input,
+    .pricing-group select {
+        width: 100%;
+        min-height: 52px;
+        padding: 13px 16px;
+        font-size: 16px;
+        border: 1px solid #d8d8d8;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #333333;
+        outline: none;
+    }
+
+    .pricing-group input:focus,
+    .pricing-group select:focus {
+        border-color: #b58a48;
+        box-shadow: 0 0 0 3px rgba(181,138,72,0.12);
+    }
+
+    .pricing-group small {
+        font-size: 13px;
+        color: #999999;
+    }
+
+    .pricing-info {
+        margin-top: 28px;
+        padding: 18px;
+        background: #faf7f1;
+        border-left: 3px solid #b58a48;
+        border-radius: 5px;
+    }
+
+    .pricing-info strong {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 8px;
+        color: #765b32;
+    }
+
+    .pricing-info p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #666666;
+    }
+
+    @media (max-width: 650px) {
+        .pricing-panel {
+            padding: 22px;
+        }
+
+        .pricing-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .pricing-group.full-width {
+            grid-column: span 1;
+        }
+    }
+</style>
+<br>
+<br>
+<br>
+<br>
+
+<!-- ALUPARTS TERMÉKKATALÓGUS -->
+
+<section class="catalog-panel">
+
+    <h2 class="catalog-title">Alumínium redőny termékkatalógus</h2>
+   
+    <div class="catalog-form">
+
+        <div class="catalog-field full">
+            <label for="shutterProduct">Redőny típusa</label>
+            <select id="shutterProduct"></select>
+        </div>
+
+        <div class="catalog-field full">
+            <label for="shutterColor">Színkategória</label>
+            <select id="shutterColor"></select>
+        </div>
+        <div class="catalog-field full" id="exactColorSelection" style="display:none;">
+            <label for="exactColor">Pontos szín megnevezése</label>
+            <input
+                type="text"
+                id="exactColor"
+                placeholder="Pl. RAL 7016, Antracit, Aranytölgy"
+            >
+        </div>
+
+        <div class="catalog-field">
+            <label for="shutterWidth">Szélesség (mm)</label>
+            <input type="number" id="shutterWidth"
+                   min="1" placeholder="Pl. 1200">
+        </div>
+
+        <div class="catalog-field">
+            <label for="shutterHeight">Magasság (mm)</label>
+            <input type="number" id="shutterHeight"
+                   min="1" placeholder="Pl. 1400">
+        </div>
+
+        <div class="catalog-field">
+            <label for="shutterQuantity">Mennyiség (db)</label>
+            <input type="number" id="shutterQuantity"
+                   min="1" value="1">
+        </div>
+
+        <div class="catalog-field">
+            <label for="shutterProfit">Saját profit (%)</label>
+            <input type="number" id="shutterProfit"
+                   min="0" value="35">
+        </div><!-- MŰKÖDTETÉS -->
+
+<div class="catalog-field full">
+    <label for="operationType">Működtetés</label>
+    <select id="operationType">
+        <option value="manual">Manuális – zsinór / gurtni (0 Ft)</option>
+        <option value="motor">Motoros redőny</option>
+    </select>
+</div>
+
+<div class="catalog-field full" id="motorSelection" style="display:none;">
+    <label for="motorModel">Motor típusa</label>
+    <select id="motorModel">
+        <option value="0">SmartHome35RE10 – 24 090 Ft + ÁFA</option>
+        <option value="1">SmartHome35RE13 – 26 190 Ft + ÁFA</option>
+        <option value="2">SmartHome35REW13 – 28 850 Ft + ÁFA</option>
+    </select>
+</div>
+
+
+    </div>
+<div class="catalog-field full" style="margin-top: 20px;">
+        <label for="shutterNote">Helyiség / megjegyzés (nem kötelező)</label>
+        <input
+            type="text"
+            id="shutterNote"
+            placeholder="Pl. Konyha, Nappali, Teraszajtó"
+        >
+    </div>
+   
+<div class="catalog-calculation">
+
+    <h3>Automatikus kalkuláció</h3>
+
+    <div class="calc-row">
+        <span>Megadott méret:</span>
+        <strong id="displaySize">–</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Számított felület:</span>
+        <strong id="displayArea">–</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Elszámolt felület:</span>
+        <strong id="billableArea">–</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Gyári redőnyár:</span>
+        <strong id="factoryPrice">–</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Redőny beszerzési ára ÁFÁ-val:</span>
+        <strong id="purchasePrice">–</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Redőny saját profitja:</span>
+        <strong id="shutterProfitAmount">–</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Motor beszerzési ára ÁFÁ-val:</span>
+        <strong id="motorPurchasePrice">0 Ft</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Motor saját haszna:</span>
+        <strong id="motorProfit">0 Ft</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Motor eladási ára:</span>
+        <strong id="motorSellingPrice">0 Ft</strong>
+    </div>
+
+    <div class="calc-row">
+        <span>Munkadíj / db:</span>
+        <strong id="laborPrice">25 000 Ft</strong>
+    </div>
+
+    <div class="calc-total">
+        <span>Eladási ár / db</span>
+        <strong id="sellingPrice">–</strong>
+    </div>
+
+    <div class="calc-total">
+        <span>Teljes eladási ár</span>
+        <strong id="totalSellingPrice">–</strong>
+    </div>
+
+    <p id="catalogNotice">
+        A számításhoz add meg a méreteket.
+    </p>
+
+</div>
+
+
+     
+
+    <button type="button" class="catalog-add-button"
+            id="addShutter">
+        + Hozzáadás az ajánlathoz
+    </button>
+
+    <div class="catalog-list">
+
+        <h3>Hozzáadott termékek</h3>
+
+        <div class="catalog-table-wrap">
+            <table class="catalog-table">
+                <thead>
+                    <tr>
+                        <th>Termék</th>
+                        <th>Méret</th>
+                        <th>Db</th>
+                        <th>Eladási ár</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="shutterItems">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="catalog-grand-total">
+            Összesen:
+            <strong id="catalogGrandTotal">0 Ft</strong>
+        </div>
+
+    </div>
+
+</section>
+<!-- MŰANYAG REDŐNY KATALÓGUS -->
+
+<section class="catalog-panel" id="plasticCatalog">
+
+    <h2 class="catalog-title">Műanyag redőny termékkatalógus</h2>
+
+    <p class="catalog-description">
+        Aluparts – Külső tokos műanyag redőnyök
+    </p>
+
+    <div class="catalog-form">
+
+        <div class="catalog-field full">
+            <label for="plasticProduct">Redőny típusa</label>
+            <select id="plasticProduct">
+                <option value="0">
+                    Műanyag redőny 
+                </option>
+                <option value="1">
+                    Kombis műanyag redőny 
+                </option>
+            </select>
+        </div>
+<div class="catalog-field full">
+    <label for="plasticColor">Szín</label>
+    <select id="plasticColor">
+        <option value="Fehér">Fehér</option>
+        <option value="Barna">Barna</option>
+    </select>
+</div>
+
+        <div class="catalog-field">
+            <label for="plasticWidth">Szélesség (mm)</label>
+            <input type="number" id="plasticWidth" min="1" placeholder="Pl. 1200">
+        </div>
+
+        <div class="catalog-field">
+            <label for="plasticHeight">Magasság (mm)</label>
+            <input type="number" id="plasticHeight" min="1" placeholder="Pl. 1400">
+        </div>
+
+        <div class="catalog-field">
+            <label for="plasticQuantity">Mennyiség (db)</label>
+            <input type="number" id="plasticQuantity" min="1" value="1">
+        </div>
+
+        <div class="catalog-field">
+            <label for="plasticProfit">Saját profit (%)</label>
+            <input type="number" id="plasticProfit" min="0" value="35">
+        </div>
+
+    </div>
+<div class="catalog-field full" style="margin-top: 20px;">
+        <label for="plasticNote">Megjegyzés / helyiség</label>
+<input type="text" id="plasticNote" placeholder="Pl. Nappali, Konyha, Teraszajtó">
+        >
+    </div>
+    <div class="catalog-calculation">
+
+        <h3>Automatikus kalkuláció</h3>
+
+        <div class="calc-row">
+            <span>Megadott méret:</span>
+            <strong id="plasticDisplaySize">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Számított felület:</span>
+            <strong id="plasticDisplayArea">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Elszámolt felület:</span>
+            <strong id="plasticBillableArea">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Gyári redőnyár:</span>
+            <strong id="plasticFactoryPrice">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Beszerzési ár ÁFÁ-val:</span>
+            <strong id="plasticPurchasePrice">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Saját profit:</span>
+            <strong id="plasticProfitAmount">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Munkadíj / db:</span>
+            <strong id="plasticLaborPrice">25 000 Ft</strong>
+        </div>
+
+        <div class="calc-total">
+            <span>Eladási ár / db</span>
+            <strong id="plasticSellingPrice">–</strong>
+        </div>
+
+        <div class="calc-total">
+            <span>Teljes eladási ár</span>
+            <strong id="plasticTotalSellingPrice">–</strong>
+        </div>
+
+        <p id="plasticCatalogNotice">
+            A számításhoz add meg a méreteket.
+        </p>
+
+    </div>
+
+    <button type="button"
+            class="catalog-add-button"
+            id="addPlasticShutter">
+        + Hozzáadás az ajánlathoz
+    </button>
+
+    <div class="catalog-list">
+
+        <h3>Hozzáadott műanyag redőnyök</h3>
+
+        <div class="catalog-table-wrap">
+
+            <table class="catalog-table">
+
+                <thead>
+                    <tr>
+                        <th>Termék</th>
+                        <th>Méret</th>
+                        <th>Db</th>
+                        <th>Eladási ár</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody id="plasticShutterItems"></tbody>
+
+            </table>
+
+        </div>
+
+        <div class="catalog-grand-total">
+            Összesen:
+            <strong id="plasticCatalogGrandTotal">0 Ft</strong>
+        </div>
+
+    </div>
+
+</section>
+<!-- SZÚNYOGHÁLÓ TERMÉKKATALÓGUS -->
+
+<section class="catalog-panel">
+
+    <h2 class="catalog-title">Szúnyogháló árkatalógus</h2>
+    <p class="catalog-description">
+        Alumínium keretes és rolós szúnyoghálók
+    </p>
+
+    <div class="catalog-form">
+
+        <div class="catalog-field full">
+            <label for="mosquitoProduct">Termék típusa</label>
+            <select id="mosquitoProduct"></select>
+        </div>
+
+        <div class="catalog-field full">
+            <label for="mosquitoColor">Színkategória</label>
+            <select id="mosquitoColor">
+                <option value="1">Alapszín – felár nélkül</option>
+                <option value="1.35">RAL szín – +35%</option>
+                <option value="1.60">Famintás – +60%</option>
+            </select>
+        </div>
+<div class="catalog-field full">
+    <label for="mosquitoExactColor">Pontos szín megnevezése</label>
+    <input type="text" id="mosquitoExactColor" placeholder="Pl. Fehér, Barna, RAL 7016, Aranytölgy">
+</div>
+
+        <div class="catalog-field">
+            <label for="mosquitoWidth">Szélesség (mm)</label>
+            <input type="number" id="mosquitoWidth" min="1" placeholder="Pl. 1200">
+        </div>
+
+        <div class="catalog-field">
+            <label for="mosquitoHeight">Magasság (mm)</label>
+            <input type="number" id="mosquitoHeight" min="1" placeholder="Pl. 1400">
+        </div>
+
+        <div class="catalog-field">
+            <label for="mosquitoQuantity">Mennyiség (db)</label>
+            <input type="number" id="mosquitoQuantity" min="1" value="1">
+        </div>
+
+        <div class="catalog-field">
+            <label for="mosquitoProfit">Saját profit (%)</label>
+            <input type="number" id="mosquitoProfit" min="0" value="35">
+        </div>
+
+    </div>
+<div class="catalog-field full" style="margin-top: 20px;">
+       <label for="mosquitoNote">Megjegyzés / helyiség</label>
+<input type="text" id="mosquitoNote" placeholder="Pl. Nappali, Konyha, Teraszajtó">
+        >
+    </div>
+    <div class="catalog-calculation">
+
+        <h3>Automatikus kalkuláció</h3>
+
+        <div class="calc-row">
+            <span>Megadott méret:</span>
+            <strong id="mosquitoDisplaySize">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Számított felület:</span>
+            <strong id="mosquitoActualArea">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Elszámolt felület:</span>
+            <strong id="mosquitoBillableArea">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Anyagár:</span>
+            <strong id="mosquitoMaterialPrice">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Színfelár:</span>
+            <strong id="mosquitoColorPrice">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Saját profit:</span>
+            <strong id="mosquitoProfitAmount">–</strong>
+        </div>
+
+        <div class="calc-row">
+            <span>Munkadíj / db:</span>
+            <strong id="mosquitoLabor">–</strong>
+        </div>
+
+        <div class="calc-total">
+            <span>Eladási ár / db</span>
+            <strong id="mosquitoSellingPrice">–</strong>
+        </div>
+
+        <div class="calc-total">
+            <span>Teljes eladási ár</span>
+            <strong id="mosquitoTotalPrice">–</strong>
+        </div>
+
+        <p id="mosquitoNotice">
+            A számításhoz add meg a méreteket.
+        </p>
+
+    </div>
+
+    <button type="button" class="catalog-add-button" id="addMosquito">
+        + Hozzáadás az ajánlathoz
+    </button>
+
+    <div class="catalog-list">
+
+        <h3>Hozzáadott szúnyoghálók</h3>
+
+        <div class="catalog-table-wrap">
+            <table class="catalog-table">
+                <thead>
+                    <tr>
+                        <th>Termék</th>
+                        <th>Méret</th>
+                        <th>Db</th>
+                        <th>Eladási ár</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="mosquitoItems"></tbody>
+            </table>
+        </div>
+
+        <div class="catalog-grand-total">
+            Összesen:
+            <strong id="mosquitoGrandTotal">0 Ft</strong>
+        </div>
+
+    </div>
+
+</section>
+<!-- SMARTHOME KATALÓGUS -->
+<section class="catalog-panel" id="smartHomeCatalog">
+    <h2>SmartHome motorok és távirányítók</h2>
+
+    <div class="catalog-form">
+        <div class="catalog-field">
+            <label for="smartHomeType">Terméktípus</label>
+           <select id="smartHomeType">
+    <option value="motor">SmartHome motor</option>
+    <option value="remote">SmartHome távirányító</option>
+    <option value="module">Okosotthon modul</option>
+</select>
+        </div>
+
+        <div class="catalog-field">
+            <label for="smartHomeProduct">Termék</label>
+            <select id="smartHomeProduct">
+                <option value="">Válassz terméket</option>
+            </select>
+        </div>
+
+        <div class="catalog-field">
+            <label for="smartHomeQuantity">Mennyiség (db)</label>
+            <input type="number" id="smartHomeQuantity" min="1" value="1">
+        </div>
+
+        <div class="catalog-field">
+            <label for="smartHomeLabor">Munkadíj (Ft/db)</label>
+            <input type="number" id="smartHomeLabor" min="0" value="0">
+        </div>
+    </div>
+   
+
+    <div class="catalog-tab-content">
+    <h3>Saját profit beállításai</h3>
+    <p>Alap profit: 8 000 Ft / motor</p>
+
+    <div class="catalog-field">
+        <label for="smartHomeExtraProfit">Extra profit (%)</label>
+        <input
+            type="number"
+            id="smartHomeExtraProfit"
+            min="0"
+            step="1"
+            value="0">
+    </div>
+</div>
+    <button type="button"
+        class="catalog-add-button"
+        onclick="addSmartHomeItem()">
+    + Hozzáadás az ajánlathoz
+</button>
+<div class="catalog-list">
+
+    <h3>Hozzáadott SmartHome termékek</h3>
+
+    <div class="catalog-table-wrap">
+        <table class="catalog-table">
+            <thead>
+                <tr>
+                    <th>Termék</th>
+                    <th>Db</th>
+                    <th>Anyagár</th>
+                    <th>Motorár</th>
+                    <th>Munkadíj</th>
+                    <th>Összesen</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="smartHomeAddedList"></tbody>
+        </table>
+    </div>
+
+    <div class="catalog-grand-total">
+        Összesen:
+        <strong id="smartHomeGrandTotal">0 Ft</strong>
+    </div>
+
+</div>
+</section>
+<!-- EGYEDI TERMÉKEK ÉS JAVÍTÁSOK -->
+<section class="catalog-panel" id="manualCatalog">
+
+    <h2>Egyedi termékek és javítások</h2>
+
+    <div class="catalog-form">
+
+        <div class="catalog-field">
+            <label for="manualName">Termék neve</label>
+            <input type="text" id="manualName" placeholder="Pl. Redőny javítás">
+        </div>
+
+        <div class="catalog-field">
+            <label for="manualMaterial">Anyagár (Ft/db)</label>
+            <input type="number" id="manualMaterial" min="0" value="0">
+        </div>
+
+        <div class="catalog-field">
+            <label for="manualLabor">Munkadíj (Ft/db)</label>
+            <input type="number" id="manualLabor" min="0" value="0">
+        </div>
+
+        <div class="catalog-field">
+            <label for="manualColor">Szín</label>
+            <input type="text" id="manualColor" placeholder="Pl. Fehér">
+        </div>
+
+        <div class="catalog-field">
+            <label for="manualWidth">Szélesség (mm)</label>
+            <input type="number" id="manualWidth" min="0" value="0">
+        </div>
+
+        <div class="catalog-field">
+            <label for="manualHeight">Magasság (mm)</label>
+            <input type="number" id="manualHeight" min="0" value="0">
+        </div>
+
+        <div class="catalog-field">
+            <label for="manualQuantity">Mennyiség (db)</label>
+            <input type="number" id="manualQuantity" min="1" value="1">
+        </div>
+
+    </div>
+
+    <button type="button"
+        class="catalog-add-button"
+        onclick="addManualItem()">
+        + Hozzáadás az ajánlathoz
+    </button>
+
+    <div class="catalog-list">
+
+        <h3>Hozzáadott egyedi termékek</h3>
+
+        <div class="catalog-table-wrap">
+            <table class="catalog-table">
+                <thead>
+                    <tr>
+                        <th>Termék</th>
+                        <th>Méret</th>
+                        <th>Szín</th>
+                        <th>Db</th>
+                        <th>Anyagár</th>
+                        <th>Munkadíj</th>
+                        <th>Összesen</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="manualAddedList"></tbody>
+            </table>
+        </div>
+
+        <div class="catalog-grand-total">
+            Összesen:
+            <strong id="manualGrandTotal">0 Ft</strong>
+        </div>
+
+    </div>
+
+</section>
+<!-- KÖZÖS ÁRAJÁNLATI ÖSSZESÍTŐ -->
+
+<section class="offer-panel" id="offerSummary">
+
+    <h2 class="catalog-title">Összesített árajánlat</h2>
+
+    <p class="catalog-description">
+        Az összes katalógusból kiválasztott termékek összesítése.
+    </p>
+
+    <div class="catalog-table-wrap">
+
+        <table class="catalog-table offer-table">
+
+            <thead>
+                <tr>
+                    <th>Megnevezés</th>
+                    <th>Szín</th>
+                    <th>Méret</th>
+                    <th>db</th>
+                    <th>Anyagár</th>
+                    <th>Motorár</th>
+                    <th>Munkadíj</th>
+                    <th>Végösszeg</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody id="offerItems">
+                <tr>
+                    <td colspan="9" style="text-align:center;">
+                        Még nincs hozzáadott termék.
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="offer-total">
+        <span>AJÁNLAT VÉGÖSSZEGE:</span>
+        <strong id="offerGrandTotal">0 Ft</strong>
+    </div>
+<div style="margin-top:20px; text-align:right;">
+    <label for="productionWeeks" style="font-weight:600; margin-right:10px;">
+        Gyártási idő (hét):
+    </label>
+    <input
+        type="number"
+        id="productionWeeks"
+        value="4"
+        min="1"
+        max="20"
+        style="width:75px; padding:10px; border:1px solid #d8d8d8; border-radius:6px; font-size:16px;"
+    >
+</div>
+
+    <button type="button"
+            class="catalog-add-button"
+            id="exportOfferPdf">
+        Árajánlat exportálása PDF-be
+    </button>
+
+</section>
+
+
+<style>
+
+.catalog-panel {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 32px;
+    margin-top: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,.04);
+    text-align: left;
+}
+
+.catalog-title {
+    font-size: 25px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.catalog-description {
+    font-size: 15px;
+    color: #888;
+    margin-bottom: 28px;
+}
+
+.catalog-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 23px;
+}
+
+.catalog-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.catalog-field.full {
+    grid-column: span 2;
+}
+
+.catalog-field label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+}
+
+.catalog-field input,
+.catalog-field select {
+    width: 100%;
+    min-height: 52px;
+    padding: 13px;
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+}
+
+.catalog-field input:focus,
+.catalog-field select:focus {
+    outline: none;
+    border-color: #b58a48;
+    box-shadow: 0 0 0 3px rgba(181,138,72,.12);
+}
+
+.catalog-calculation {
+    margin-top: 30px;
+    padding: 22px;
+    background: #faf9f6;
+    border-radius: 9px;
+    border: 1px solid #eee9df;
+}
+
+.catalog-calculation h3,
+.catalog-list h3 {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eae6df;
+    font-size: 14px;
+}
+
+.calc-row span {
+    color: #777;
+}
+
+.calc-row strong {
+    text-align: right;
+}
+
+.calc-total {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 17px 0 5px;
+    font-weight: bold;
+}
+
+.calc-total strong {
+    color: #b58a48;
+    font-size: 19px;
+    text-align: right;
+}
+
+#catalogNotice {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #888;
+}
+
+.catalog-add-button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 17px;
+    background: #b58a48;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.catalog-add-button:hover {
+    background: #98723b;
+}
+
+.catalog-list {
+    margin-top: 35px;
+}
+
+.catalog-table-wrap {
+    overflow-x: auto;
+}
+
+.catalog-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+.catalog-table th,
+.catalog-table td {
+    padding: 13px 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+.catalog-table th {
+    color: #777;
+    background: #faf9f6;
+}
+
+.catalog-delete {
+    color: #b33;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 19px;
+}
+
+.catalog-grand-total {
+    text-align: right;
+    margin-top: 22px;
+    font-size: 18px;
+}
+
+.catalog-grand-total strong {
+    color: #b58a48;
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+@media(max-width:650px) {
+    .catalog-panel {
+        padding: 20px;
+    }
+
+    .catalog-form {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-field.full {
+        grid-column: span 1;
+    }
+
+    .calc-row {
+        font-size: 13px;
+    }
+}
+
+#motorSelection {
+    margin-top: 5px;
+}
+/* KÖZÖS ÁRAJÁNLAT – KIZÁRÓLAG ERRE A PANELRE */
+
+#offerSummary {
+    max-width: 1400px;
+    width: calc(100% - 40px);
+    margin: 45px auto;
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e5dfd4;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(40, 35, 25, 0.08);
+    text-align: center;
+}
+
+#offerSummary .catalog-title {
+    color: #343a35;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+#offerSummary .catalog-description {
+    color: #8b8173;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+#offerSummary .catalog-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e9e3d9;
+    border-radius: 10px;
+}
+
+#offerSummary .offer-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+#offerSummary .offer-table th {
+    background: #343a35;
+    color: #ffffff;
+    padding: 17px 12px;
+    font-size: 14px;
+    font-weight: 650;
+    text-align: center;
+    border-bottom: none;
+}
+
+#offerSummary .offer-table td {
+    padding: 16px 12px;
+    color: #454545;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid #eeeae3;
+}
+
+#offerSummary .offer-table tbody tr:nth-child(even) {
+    background: #faf8f4;
+}
+
+#offerSummary .offer-table tbody tr:hover {
+    background: #f1ece2;
+}
+
+#offerSummary .offer-total {
+    margin-top: 25px;
+    padding: 22px;
+    background: #f5f1e9;
+    border: 1px solid #e5dccb;
+    border-radius: 10px;
+    color: #343a35;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+}
+
+#offerSummary .offer-total strong {
+    color: #92703d;
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+#offerSummary #exportOfferPdf {
+    width: auto;
+    min-width: 230px;
+    margin-top: 25px;
+    padding: 16px 32px;
+    background: #343a35;
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+#offerSummary #exportOfferPdf:hover {
+    background: #92703d;
+}
+
+@media (max-width: 650px) {
+    #offerSummary {
+        width: calc(100% - 20px);
+        padding: 18px;
+        margin: 25px auto;
+    }
+
+    #offerSummary .catalog-title {
+        font-size: 23px;
+    }
+
+    #offerSummary .offer-total {
+        padding: 16px;
+        font-size: 15px;
+    }
+
+    #offerSummary .offer-total strong {
+        font-size: 21px;
+    }
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://unpkg.com/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js"></script>
+<script>
+
+// ALUPARTS TERMÉKADATOK
+// Az árak EUR/m²-ben, nettó értékben szerepelnek.
+// A sorrend: alap szín / RAL / famintás.
+
+const shutterProducts = [
+
+["Alumínium redőny alapszínű palásttal",56.89,70.28,67.67],
+["Alumínium redőny faerezett színű palásttal",60.19,73.89,70.85],
+["Alumínium redőny extra színű palásttal",63.16,77.07,73.61],
+["Kombis alumínium redőny",74.42,86.59,90.63],
+["Kombis alumínium redőny faerezett színű palásttal",77.64,89.93,93.68],
+["Kombis alumínium redőny extra színű palásttal",80.47,92.95,96.46],
+["Vakolható alumínium redőny",63.16,76.71,69.05],
+["Vakolható alumínium redőny faerezett színű palásttal",66.48,80.26,72.23],
+["Vakolható alumínium redőny extra színű palásttal",69.43,83.53,74.96],
+["Vakolható kombi alumínium redőny",77.99,91.45,87.91],
+["Vakolható kombi alumínium redőny faerezett színű palásttal",81.21,94.84,90.98],
+["Vakolható kombi alumínium redőny extra színű palásttal",84.08,97.83,93.05],
+
+
+];
+
+const colorOptions = [
+    {name:"Fehér / Barna / 7016",index:1},
+    {name:"RAL szín",index:2},
+    {name:"Famintás szín",index:3}
+];
+
+const productSelect = document.getElementById("shutterProduct");
+const colorSelect = document.getElementById("shutterColor");
+
+const money = value =>
+    new Intl.NumberFormat("hu-HU",{
+        maximumFractionDigits:0
+    }).format(Math.round(value)) + " Ft";
+
+function getSettings() {
+
+    const rate = Number(
+        document.getElementById("eurRate")?.value || 395
+    );
+
+    const vat = Number(
+        document.getElementById("supplierVat")?.value || 27
+    );
+
+    const type = document.getElementById("priceType")?.value || "net";
+
+    return {
+        rate,
+        vat: type === "net" ? 1 + vat / 100 : 1
+    };
+}
+
+// TERMÉKEK FELTÖLTÉSE
+
+shutterProducts.forEach((product,index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = product[0];
+    productSelect.appendChild(option);
+});
+
+function updateColors() {
+
+    colorSelect.innerHTML = "";
+
+    const product = shutterProducts[productSelect.value];
+
+    colorOptions.forEach(color => {
+
+        const price = product[color.index];
+
+        const option = document.createElement("option");
+
+        option.value = color.index;
+        option.textContent = price === null
+            ? color.name + " – nem elérhető"
+            : color.name + " – " + price.toFixed(2) + " €/m²";
+
+        option.disabled = price === null;
+
+        colorSelect.appendChild(option);
+    });
+
+    const firstAvailable = colorOptions.find(
+        color => product[color.index] !== null
+    );
+
+    colorSelect.value = firstAvailable.index;
+
+    // A pontos szín megadására szolgáló mező megjelenítése
+    document.getElementById("exactColorSelection").style.display = "block";
+
+    calculateShutter();
+}
+
+// KALKULÁCIÓ ÉS MOTOROK
+
+const motorProducts = [
+    { name: "SmartHome35RE10", price: 24090 },
+    { name: "SmartHome35RE13", price: 26190 },
+    { name: "SmartHome35REW13", price: 28850 }
+];
+
+const MOTOR_PROFIT = 8000;
+const LABOR_COST = 25000;
+
+const operationType = document.getElementById("operationType");
+const motorModel = document.getElementById("motorModel");
+const motorSelection = document.getElementById("motorSelection");
+
+operationType.addEventListener("change", function () {
+    motorSelection.style.display =
+        this.value === "motor" ? "flex" : "none";
+
+    calculateShutter();
+});
+
+motorModel.addEventListener("change", calculateShutter);
+
+function calculateShutter() {
+
+    const product = shutterProducts[productSelect.value];
+
+    const width = Number(document.getElementById("shutterWidth").value);
+    const height = Number(document.getElementById("shutterHeight").value);
+    const quantity = Number(document.getElementById("shutterQuantity").value);
+    const profit = Number(document.getElementById("shutterProfit").value);
+
+    const colorIndex = Number(colorSelect.value);
+    const euroPrice = product ? product[colorIndex] : null;
+
+    if (
+        !product ||
+        !width || !height || width <= 0 || height <= 0 ||
+        !quantity || quantity <= 0 ||
+        profit < 0 || !Number.isFinite(profit) ||
+        euroPrice === null || euroPrice === undefined
+    ) {
+        document.getElementById("catalogNotice").textContent =
+            "Adj meg érvényes méreteket, mennyiséget és profitot.";
+
+        return null;
+    }
+
+    // REDŐNY ÁRA
+
+    const actualArea = width * height / 1000000;
+    const area = Math.max(actualArea, 1.2);
+    const settings = getSettings();
+
+    const purchase =
+        euroPrice * area * settings.rate * settings.vat;
+
+    const profitValue = purchase * profit / 100;
+    const shutterSelling = purchase + profitValue;
+
+    // MOTOR ÁRA
+
+    let motorCost = 0;
+    let motorProfit = 0;
+    let motorSelling = 0;
+    let motorName = "Manuális – zsinór / gurtni";
+
+    if (operationType.value === "motor") {
+
+        const motor = motorProducts[Number(motorModel.value)];
+
+        const motorVatRate =
+    document.getElementById("priceType").value === "net"
+    ? 1 + Number(document.getElementById("supplierVat").value || 27) / 100
+    : 1;
+
+motorName = motor.name;
+motorCost = motor.price * motorVatRate;
+        motorProfit = MOTOR_PROFIT;
+        motorSelling = motorCost + motorProfit;
+    }
+
+    // VÉGLEGES ELADÁSI ÁR
+
+const laborCost = LABOR_COST;
+
+const selling = shutterSelling + motorSelling + laborCost;
+    const total = selling * quantity;
+
+
+    // MEGJELENÍTÉS
+
+    document.getElementById("displaySize").textContent =
+        width + " × " + height + " mm";
+
+    document.getElementById("displayArea").textContent =
+        actualArea.toFixed(2) + " m²";
+
+    document.getElementById("billableArea").textContent =
+        area.toFixed(2) + " m² / db";
+
+    document.getElementById("factoryPrice").textContent =
+        euroPrice.toFixed(2) + " €/m²";
+
+    document.getElementById("purchasePrice").textContent =
+        money(purchase);
+document.getElementById("shutterProfitAmount").textContent =
+    money(profitValue);
+
+    
+    document.getElementById("motorPurchasePrice").textContent =
+        money(motorCost);
+
+    document.getElementById("motorProfit").textContent =
+    money(motorProfit * quantity);
+
+    document.getElementById("motorSellingPrice").textContent =
+        money(motorSelling);
+document.getElementById("laborPrice").textContent =
+    money(laborCost);
+
+    document.getElementById("sellingPrice").textContent =
+        money(selling);
+
+    document.getElementById("totalSellingPrice").textContent =
+        money(total);
+
+    document.getElementById("catalogNotice").textContent =
+        actualArea < 1.2
+        ? "A gyártó 1,2 m²-es minimum elszámolási felülete érvényesül."
+        : "A kalkuláció a megadott méret alapján készült.";
+
+   return {
+    name: product[0],
+    color: colorOptions.find(c => c.index === colorIndex).name,
+    exactColor: document.getElementById("exactColor").value.trim(),
+        width,
+        height,
+        area,
+        quantity,
+        profit,
+        purchase,
+        motorName,
+        motorCost,
+        motorProfit,
+        motorSelling,
+	laborCost,
+        operationText: motorName,
+        selling,
+        total
+    };
+}// MEZŐK FIGYELÉSE
+
+[
+    "shutterWidth",
+    "shutterHeight",
+    "shutterQuantity",
+    "shutterProfit"
+].forEach(id => {
+    document.getElementById(id).addEventListener(
+        "input",calculateShutter
+    );
+});
+
+productSelect.addEventListener("change",updateColors);
+colorSelect.addEventListener("change",calculateShutter);
+
+// KATALÓGUS BEÁLLÍTÁSOK VÁLTOZÁSA
+
+["eurRate","supplierVat","priceType"].forEach(id => {
+    const field = document.getElementById(id);
+
+    if(field) {
+        field.addEventListener("input",calculateShutter);
+        field.addEventListener("change",calculateShutter);
+    }
+});
+// KÖZÖS ÁRAJÁNLATI TÉTELEK
+
+const offerItems = [];
+const smartHomeItems = [];
+const manualItems = [];
+function renderSmartHomeItems() {
+    const tbody = document.getElementById("smartHomeAddedList");
+    const totalElement = document.getElementById("smartHomeGrandTotal");
+
+    tbody.innerHTML = "";
+
+    let grandTotal = 0;
+
+    if (smartHomeItems.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align:center;">
+                    Még nincs hozzáadott SmartHome termék.
+                </td>
+            </tr>
+        `;
+        totalElement.textContent = money(0);
+        return;
+    }
+
+    smartHomeItems.forEach((item, index) => {
+        grandTotal += item.total;
+
+        const row = document.createElement("tr");
+
+        const cells = [
+            item.name,
+            item.quantity + " db",
+            money(item.materialSelling * item.quantity),
+            item.motorSelling > 0
+                ? money(item.motorSelling * item.quantity)
+                : "—",
+            money(item.laborCost * item.quantity),
+            money(item.total)
+        ];
+
+        cells.forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            row.appendChild(td);
+        });
+
+        const deleteCell = document.createElement("td");
+        const deleteButton = document.createElement("button");
+
+        deleteButton.className = "catalog-delete";
+        deleteButton.textContent = "×";
+        deleteButton.type = "button";
+        deleteButton.title = "Tétel törlése";
+
+        deleteButton.addEventListener("click", () => {
+            const offerIndex = offerItems.findIndex(
+                offerItem => offerItem.sourceItem === item
+            );
+
+            if (offerIndex !== -1) {
+                offerItems.splice(offerIndex, 1);
+            }
+
+            smartHomeItems.splice(index, 1);
+
+            renderSmartHomeItems();
+            renderOfferItems();
+        });
+
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+        tbody.appendChild(row);
+    });
+
+    totalElement.textContent = money(grandTotal);
+}
+function renderManualItems() {
+    const tbody = document.getElementById("manualAddedList");
+    const totalElement = document.getElementById("manualGrandTotal");
+
+    tbody.innerHTML = "";
+
+    let grandTotal = 0;
+
+    if (manualItems.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="8" style="text-align:center;">
+                    Még nincs hozzáadott egyedi termék.
+                </td>
+            </tr>
+        `;
+        totalElement.textContent = money(0);
+        return;
+    }
+
+    manualItems.forEach((item, index) => {
+        grandTotal += item.total;
+
+        const row = document.createElement("tr");
+
+        const size = item.width || item.height
+            ? item.width + " × " + item.height + " mm"
+            : "—";
+
+        const cells = [
+            item.name,
+            size,
+            item.color || "—",
+            item.quantity + " db",
+            money(item.materialSelling * item.quantity),
+            money(item.laborCost * item.quantity),
+            money(item.total)
+        ];
+
+        cells.forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            row.appendChild(td);
+        });
+
+        const deleteCell = document.createElement("td");
+        const deleteButton = document.createElement("button");
+
+        deleteButton.className = "catalog-delete";
+        deleteButton.textContent = "×";
+        deleteButton.type = "button";
+        deleteButton.title = "Tétel törlése";
+
+        deleteButton.addEventListener("click", () => {
+            const offerIndex = offerItems.findIndex(
+                offerItem => offerItem.sourceItem === item
+            );
+
+            if (offerIndex !== -1) {
+                offerItems.splice(offerIndex, 1);
+            }
+
+            manualItems.splice(index, 1);
+
+            renderManualItems();
+            renderOfferItems();
+        });
+
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+        tbody.appendChild(row);
+    });
+
+    totalElement.textContent = money(grandTotal);
+}
+function addManualItem() {
+    const name = document.getElementById("manualName").value.trim();
+    const materialSelling = Number(document.getElementById("manualMaterial").value) || 0;
+    const laborCost = Number(document.getElementById("manualLabor").value) || 0;
+    const color = document.getElementById("manualColor").value.trim();
+    const width = Number(document.getElementById("manualWidth").value) || 0;
+    const height = Number(document.getElementById("manualHeight").value) || 0;
+    const quantity = Number(document.getElementById("manualQuantity").value) || 1;
+
+    if (!name) {
+        alert("Kérlek, add meg a termék nevét!");
+        return;
+    }
+
+    const item = {
+        name: name,
+        materialSelling: materialSelling,
+        motorSelling: 0,
+        laborCost: laborCost,
+        color: color,
+        width: width,
+        height: height,
+        quantity: quantity,
+        total: (materialSelling + laborCost) * quantity,
+        sourceType: "manual"
+    };
+
+    manualItems.push(item);
+
+    offerItems.push({
+        ...item,
+        sourceItem: item
+    });
+
+    renderManualItems();
+    renderOfferItems();
+
+    document.getElementById("manualName").value = "";
+    document.getElementById("manualMaterial").value = 0;
+    document.getElementById("manualLabor").value = 0;
+    document.getElementById("manualColor").value = "";
+    document.getElementById("manualWidth").value = 0;
+    document.getElementById("manualHeight").value = 0;
+    document.getElementById("manualQuantity").value = 1;
+}
+const smartHomeProducts = {
+    motor: [
+        { name: "SmartHome35RE10", price: 24090 },
+        { name: "SmartHome35RE13", price: 26190 },
+        { name: "SmartHome35REW13", price: 28850 }
+    ],
+    remote: [
+        { name: "DD1802H távirányító", price: 14500 }
+    ],
+    module: [
+        { name: "DD7006A okosotthon modul", price: 46690 }
+    ]
+};
+
+function updateSmartHomeProducts() {
+    const type = document.getElementById("smartHomeType").value;
+    const productSelect = document.getElementById("smartHomeProduct");
+
+    productSelect.innerHTML = '<option value="">Válassz terméket</option>';
+
+    smartHomeProducts[type].forEach((product, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = `${product.name} – ${money(product.price)}`;
+        productSelect.appendChild(option);
+    });
+}
+
+document.getElementById("smartHomeType").addEventListener("change", updateSmartHomeProducts);
+
+updateSmartHomeProducts();
+renderSmartHomeItems();
+renderManualItems();
+document.getElementById("smartHomeExtraProfit").addEventListener("input", function() {
+    console.log("SmartHome extra profit: " + this.value + "%");
+});
+function addSmartHomeItem() {
+
+    const type = document.getElementById("smartHomeType").value;
+    const productIndex = document.getElementById("smartHomeProduct").value;
+    const quantity = Number(document.getElementById("smartHomeQuantity").value) || 1;
+    const laborCost = Number(document.getElementById("smartHomeLabor").value) || 0;
+if (type === "module") {
+    document.getElementById("smartHomeLabor").value = 20000;
+}
+
+const finalLaborCost = type === "module"
+    ? 20000
+    : laborCost;
+
+    if (productIndex === "") {
+        alert("Kérlek, válassz terméket!");
+        return;
+    }
+
+    const product = smartHomeProducts[type][Number(productIndex)];
+
+    const supplierVatRate =
+    document.getElementById("priceType").value === "net"
+    ? 1 + Number(document.getElementById("supplierVat").value || 27) / 100
+    : 1;
+
+const motorCost = type === "motor" || type === "module"
+    ? product.price * supplierVatRate
+    : 0;
+
+const extraProfitPercent = Number(
+    document.getElementById("smartHomeExtraProfit").value
+) || 0;
+
+const motorSelling = type === "motor"
+    ? motorCost + 8000 + (motorCost * extraProfitPercent / 100)
+    : 0;
+
+const materialSelling = type === "remote" || type === "module"
+    ? (type === "module"
+        ? motorCost + 10000
+        : product.price)
+    : 0;
+    const item = {
+        name: product.name,
+        motorCost: motorCost,
+        color: "",
+        width: 0,
+        height: 0,
+        quantity: quantity,
+        materialSelling: materialSelling,
+        motorSelling: motorSelling,
+        laborCost: laborCost,
+        laborCost: finalLaborCost,
+total: (materialSelling + motorSelling + finalLaborCost) * quantity,
+        sourceType: "smarthome"
+    };
+
+    smartHomeItems.push(item);
+renderSmartHomeItems();
+    offerItems.push({
+        ...item,
+        sourceItem: item
+    });
+
+    renderOfferItems();
+
+    document.getElementById("smartHomeProduct").value = "";
+    document.getElementById("smartHomeQuantity").value = 1;
+    document.getElementById("smartHomeLabor").value = 0;
+}
+function renderOfferItems() {
+
+    const tbody = document.getElementById("offerItems");
+    const totalElement = document.getElementById("offerGrandTotal");
+
+    tbody.innerHTML = "";
+
+    let grandTotal = 0;
+
+    if (offerItems.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="9" style="text-align:center;">
+                    Még nincs hozzáadott termék.
+                </td>
+            </tr>
+        `;
+
+        totalElement.textContent = money(0);
+        return;
+    }
+
+    offerItems.forEach((item, index) => {
+
+        grandTotal += item.total;
+
+        const row = document.createElement("tr");
+
+        const cells = [
+            item.name,
+            item.color || "—",
+            item.width + " × " + item.height + " mm",
+            item.quantity + " db",
+            money(item.materialSelling * item.quantity),
+            item.motorSelling > 0 ? money(item.motorSelling * item.quantity) : "—",
+            money(item.laborCost * item.quantity),
+            money(item.total)
+        ];
+
+      cells.forEach((value, cellIndex) => {
+    const td = document.createElement("td");
+
+    if (cellIndex === 0 && item.note) {
+        td.innerHTML = "";
+
+        const name = document.createElement("div");
+        name.textContent = item.name;
+
+        const note = document.createElement("div");
+        note.textContent = item.note;
+        note.style.fontSize = "11px";
+        note.style.color = "#888";
+        note.style.marginTop = "4px";
+
+        td.appendChild(name);
+        td.appendChild(note);
+    } else {
+        td.textContent = value;
+    }
+
+    row.appendChild(td);
+});
+
+        const deleteCell = document.createElement("td");
+        const deleteButton = document.createElement("button");
+
+        deleteButton.type = "button";
+        deleteButton.className = "catalog-delete";
+        deleteButton.textContent = "×";
+        deleteButton.title = "Tétel törlése";
+
+   deleteButton.addEventListener("click", () => {
+
+    const deletedItem = offerItems[index];
+
+    // ALUMÍNIUM REDŐNY TÖRLÉSE
+    if (deletedItem.sourceType === "shutter") {
+
+        const sourceIndex = shutterItems.indexOf(deletedItem.sourceItem);
+
+        if (sourceIndex !== -1) {
+            shutterItems.splice(sourceIndex, 1);
+        }
+
+        renderShutterItems();
+    }
+
+    // MŰANYAG REDŐNY TÖRLÉSE
+    else if (deletedItem.sourceType === "plastic") {
+
+        const sourceIndex = plasticItems.indexOf(deletedItem.sourceItem);
+
+        if (sourceIndex !== -1) {
+            plasticItems.splice(sourceIndex, 1);
+        }
+
+        renderPlasticItems();
+    }
+
+    // SZÚNYOGHÁLÓ TÖRLÉSE
+    else if (deletedItem.sourceType === "mosquito") {
+
+        const sourceIndex = mosquitoItems.indexOf(deletedItem.sourceItem);
+
+        if (sourceIndex !== -1) {
+            mosquitoItems.splice(sourceIndex, 1);
+        }
+
+        renderMosquitoItems();
+    }
+// SMARTHOME TERMÉK TÖRLÉSE
+else if (deletedItem.sourceType === "smarthome") {
+
+    const sourceIndex = smartHomeItems.indexOf(deletedItem.sourceItem);
+
+    if (sourceIndex !== -1) {
+    smartHomeItems.splice(sourceIndex, 1);
+    renderSmartHomeItems();
+}
+}
+
+    // KÖZÖS TÁBLÁZAT FRISSÍTÉSE
+    offerItems.splice(index, 1);
+
+    renderOfferItems();
+
+});
+
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+
+        tbody.appendChild(row);
+    });
+
+    totalElement.textContent = money(grandTotal);
+}
+// HOZZÁADÁS AZ AJÁNLATHOZ
+
+const shutterItems = [];
+
+document.getElementById("addShutter").addEventListener(
+    "click", () => {
+
+        const item = calculateShutter();
+
+        if(!item) return;
+
+        shutterItems.push(item);
+
+    offerItems.push({
+    name: item.name,
+    note: document.getElementById("shutterNote").value.trim(),
+    color: item.color,
+    exactColor: item.exactColor,
+    width: item.width,
+    height: item.height,
+    quantity: item.quantity,
+    materialSelling: item.selling - item.motorSelling - item.laborCost,
+    motorSelling: item.motorSelling,
+    laborCost: item.laborCost,
+    total: item.total,
+    sourceType: "shutter",
+    sourceItem: item
+});
+
+        renderShutterItems();
+        renderOfferItems();
+    }
+);
+
+// TÁBLÁZAT FRISSÍTÉSE
+
+function renderShutterItems() {
+
+    const tbody = document.getElementById("shutterItems");
+
+    tbody.innerHTML = "";
+
+    let grandTotal = 0;
+
+    shutterItems.forEach((item,index) => {
+
+        grandTotal += item.total;
+
+        const row = document.createElement("tr");
+
+        const cells = [
+            item.name + " – " + item.color + " – " + item.operationText,
+            item.width + " × " + item.height,
+            item.quantity + " db",
+            money(item.total)
+        ];
+
+        cells.forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            row.appendChild(td);
+        });
+
+        const deleteCell = document.createElement("td");
+
+        const deleteButton = document.createElement("button");
+
+        deleteButton.className = "catalog-delete";
+        deleteButton.textContent = "×";
+        deleteButton.type = "button";
+        deleteButton.title = "Tétel törlése";
+
+        deleteButton.addEventListener("click",() => {
+            shutterItems.splice(index,1);
+            renderShutterItems();
+        });
+
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+
+        tbody.appendChild(row);
+    });
+
+    document.getElementById("catalogGrandTotal").textContent =
+        money(grandTotal);
+}
+
+// MŰANYAG REDŐNY TERMÉKADATOK
+
+const plasticProducts = [
+    [
+        "Műanyag redőny",
+        31.12
+    ],
+    [
+        "Kombis műanyag redőny",
+        43.52
+    ]
+];
+
+const PLASTIC_LABOR_COST = 25000;
+const PLASTIC_MIN_AREA = 1.2;
+
+const plasticItems = [];
+
+function calculatePlasticShutter() {
+
+    const product = plasticProducts[
+        Number(document.getElementById("plasticProduct").value)
+    ];
+
+    const width = Number(
+        document.getElementById("plasticWidth").value
+    );
+
+    const height = Number(
+        document.getElementById("plasticHeight").value
+    );
+
+    const quantity = Number(
+        document.getElementById("plasticQuantity").value
+    );
+
+    const profit = Number(
+        document.getElementById("plasticProfit").value
+    );
+
+    if (
+        !width || !height ||
+        width <= 0 || height <= 0 ||
+        !quantity || quantity <= 0 ||
+        !Number.isFinite(profit) || profit < 0
+    ) {
+        document.getElementById("plasticCatalogNotice").textContent =
+            "Adj meg érvényes méreteket, mennyiséget és profitot.";
+
+        return null;
+    }
+
+    // FELÜLET
+
+    const actualArea = width * height / 1000000;
+
+    const area = Math.max(actualArea, PLASTIC_MIN_AREA);
+
+    // KÖZÖS ÁRAZÁSI BEÁLLÍTÁSOK
+
+    const settings = getSettings();
+
+    // BESZERZÉSI ÁR
+
+    const euroPrice = product[1];
+
+    const purchase =
+        euroPrice * area * settings.rate * settings.vat;
+
+    // PROFIT
+
+    const profitValue = purchase * profit / 100;
+
+    // MUNKADÍJ
+
+    const selling =
+        purchase + profitValue + PLASTIC_LABOR_COST;
+
+    const total = selling * quantity;
+
+    // MEGJELENÍTÉS
+
+    document.getElementById("plasticDisplaySize").textContent =
+        width + " × " + height + " mm";
+
+    document.getElementById("plasticDisplayArea").textContent =
+        actualArea.toFixed(2) + " m²";
+
+    document.getElementById("plasticBillableArea").textContent =
+        area.toFixed(2) + " m² / db";
+
+    document.getElementById("plasticFactoryPrice").textContent =
+        euroPrice.toFixed(2) + " €/m²";
+
+    document.getElementById("plasticPurchasePrice").textContent =
+        money(purchase);
+
+    document.getElementById("plasticProfitAmount").textContent =
+        money(profitValue);
+
+    document.getElementById("plasticLaborPrice").textContent =
+        money(PLASTIC_LABOR_COST);
+
+    document.getElementById("plasticSellingPrice").textContent =
+        money(selling);
+
+    document.getElementById("plasticTotalSellingPrice").textContent =
+        money(total);
+
+    document.getElementById("plasticCatalogNotice").textContent =
+        actualArea < PLASTIC_MIN_AREA
+        ? "A gyártó 1,2 m²-es minimum elszámolási felülete érvényesül."
+        : "A kalkuláció a megadott méret alapján készült.";
+
+    return {
+        name: product[0],
+       color: document.getElementById("plasticColor").value,
+        width,
+        height,
+        quantity,
+        materialSelling: purchase + profitValue,
+        motorSelling: 0,
+        laborCost: PLASTIC_LABOR_COST,
+        selling,
+        total
+    };
+}
+
+// MEZŐK FIGYELÉSE
+
+[
+    "plasticProduct",
+    "plasticWidth",
+    "plasticHeight",
+    "plasticQuantity",
+    "plasticProfit"
+].forEach(id => {
+
+    const field = document.getElementById(id);
+
+    field.addEventListener("input", calculatePlasticShutter);
+    field.addEventListener("change", calculatePlasticShutter);
+
+});
+
+
+// KÖZÖS ÁRFOLYAM ÉS ÁFA FIGYELÉSE
+
+["eurRate", "supplierVat", "priceType"].forEach(id => {
+
+    document.getElementById(id).addEventListener(
+        "input",
+        calculatePlasticShutter
+    );
+
+    document.getElementById(id).addEventListener(
+        "change",
+        calculatePlasticShutter
+    );
+
+});
+
+
+// HOZZÁADÁS AZ AJÁNLATHOZ
+
+document.getElementById("addPlasticShutter").addEventListener(
+    "click",
+    function () {
+
+        const item = calculatePlasticShutter();
+
+        if (!item) return;
+
+           plasticItems.push(item);
+
+        offerItems.push({
+            name: item.name,
+note: document.getElementById("plasticNote").value.trim(),
+            color: item.color,
+            width: item.width,
+            height: item.height,
+            quantity: item.quantity,
+            materialSelling: item.materialSelling,
+            motorSelling: 0,
+            laborCost: item.laborCost,
+            total: item.total,
+            sourceType: "plastic",
+            sourceItem: item
+        });
+
+        renderPlasticItems();
+        renderOfferItems();
+}
+);
+
+
+// TÁBLÁZAT FRISSÍTÉSE
+
+function renderPlasticItems() {
+
+    const tbody = document.getElementById("plasticShutterItems");
+
+    tbody.innerHTML = "";
+
+    let grandTotal = 0;
+
+    plasticItems.forEach((item, index) => {
+
+        grandTotal += item.total;
+
+        const row = document.createElement("tr");
+
+        const cells = [
+            item.name,
+            item.width + " × " + item.height + " mm",
+            item.quantity + " db",
+            money(item.total)
+        ];
+
+        cells.forEach(value => {
+
+            const td = document.createElement("td");
+
+            td.textContent = value;
+
+            row.appendChild(td);
+
+        });
+
+        const deleteCell = document.createElement("td");
+
+        const deleteButton = document.createElement("button");
+
+        deleteButton.className = "catalog-delete";
+        deleteButton.textContent = "×";
+        deleteButton.type = "button";
+
+        deleteButton.addEventListener("click", function () {
+
+            plasticItems.splice(index, 1);
+
+            renderPlasticItems();
+
+        });
+
+        deleteCell.appendChild(deleteButton);
+
+        row.appendChild(deleteCell);
+
+        tbody.appendChild(row);
+
+    });
+
+    document.getElementById("plasticCatalogGrandTotal").textContent =
+        money(grandTotal);
+
+}
+// SZÚNYOGHÁLÓ TERMÉKADATOK
+
+const mosquitoProducts = [
+    {
+        name: "Függőleges mobil szúnyogháló",
+        price: 12320,
+        labor: 15000,
+        minArea: 1
+    },
+    {
+        name: "Vízszintes nyitású mobil szúnyogháló (ajtó)",
+        price: 12815,
+        labor: 15000,
+        minArea: 1
+    },
+    {
+        name: "Fix szúnyogháló 20x22",
+        price: 5665,
+        labor: 8000,
+        minArea: 1
+    },
+    {
+        name: "Fix szúnyogháló 9x33 ráfordító füllel",
+        price: 4730,
+        extra: 80,
+        labor: 8000,
+        minArea: 1
+    },
+    {
+        name: "Fix szúnyogháló 10x30 + fogófül",
+        price: 6875,
+        labor: 5000,
+        minArea: 1
+    },
+    {
+        name: "Keretes nyílóajtó",
+        price: 17930,
+        labor: 15000,
+        minArea: 1
+    },
+    {
+        name: "Pliszé szúnyogháló",
+        price: 65,
+        euro: true,
+        labor: 22000,
+        minArea: 1.5
+    }
+];
+
+const mosquitoProductSelect =
+    document.getElementById("mosquitoProduct");
+
+mosquitoProducts.forEach((product, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = product.name;
+    mosquitoProductSelect.appendChild(option);
+});
+
+const mosquitoFields = [
+    "mosquitoProduct",
+    "mosquitoColor",
+    "mosquitoWidth",
+    "mosquitoHeight",
+    "mosquitoQuantity",
+    "mosquitoProfit"
+];
+
+mosquitoFields.forEach(id => {
+    const field = document.getElementById(id);
+
+    field.addEventListener("input", calculateMosquito);
+    field.addEventListener("change", calculateMosquito);
+});
+
+function calculateMosquito() {
+
+    const product =
+        mosquitoProducts[Number(mosquitoProductSelect.value)];
+
+    const width =
+        Number(document.getElementById("mosquitoWidth").value);
+
+    const height =
+        Number(document.getElementById("mosquitoHeight").value);
+
+    const quantity =
+        Number(document.getElementById("mosquitoQuantity").value);
+
+    const profit =
+        Number(document.getElementById("mosquitoProfit").value);
+
+    const colorMultiplier =
+        Number(document.getElementById("mosquitoColor").value);
+
+    const notice =
+        document.getElementById("mosquitoNotice");
+
+    if (
+        !product ||
+        width <= 0 ||
+        height <= 0 ||
+        quantity <= 0 ||
+        profit < 0 ||
+        !Number.isFinite(profit)
+    ) {
+        notice.textContent =
+            "Adj meg érvényes méreteket, mennyiséget és profitot.";
+
+        return null;
+    }
+
+    const actualArea = width * height / 1000000;
+    const area = Math.max(actualArea, product.minArea);
+
+    const settings = getSettings();
+
+    let basePrice = product.price;
+
+    // PLISZÉ EUR ÁRÁNAK ÁTVÁLTÁSA
+
+    if (product.euro) {
+        basePrice = basePrice * settings.rate;
+    }
+
+    // ANYAGÁR ÉS SZÍNFELÁR
+
+    const basicMaterial =
+        basePrice * area * settings.vat;
+
+    const materialWithColor =
+        basicMaterial * colorMultiplier;
+
+    const colorExtra =
+        materialWithColor - basicMaterial;
+
+    // RÁFORDÍTÓ FÜL FELÁRA
+
+    const extraPrice =
+        (product.extra || 0) * settings.vat;
+
+    const materialTotal =
+        materialWithColor + extraPrice;
+
+    // SAJÁT PROFIT
+
+    const profitAmount =
+        materialTotal * profit / 100;
+
+    // MUNKADÍJ
+
+const labor = product.labor * quantity;
+
+// ELADÁSI ÁR
+
+const sellingPrice =
+    materialTotal + profitAmount + product.labor;
+
+const totalPrice =
+    sellingPrice * quantity;
+
+    // KIJELZÉS
+
+    document.getElementById("mosquitoDisplaySize").textContent =
+        width + " × " + height + " mm";
+
+    document.getElementById("mosquitoActualArea").textContent =
+        actualArea.toFixed(2) + " m²";
+
+    document.getElementById("mosquitoBillableArea").textContent =
+        area.toFixed(2) + " m²";
+
+    document.getElementById("mosquitoMaterialPrice").textContent =
+        money(basicMaterial + extraPrice);
+
+    document.getElementById("mosquitoColorPrice").textContent =
+        money(colorExtra);
+
+    document.getElementById("mosquitoProfitAmount").textContent =
+        money(profitAmount);
+
+    document.getElementById("mosquitoLabor").textContent =
+        money(labor);
+
+    document.getElementById("mosquitoSellingPrice").textContent =
+        money(sellingPrice);
+
+    document.getElementById("mosquitoTotalPrice").textContent =
+        money(totalPrice);
+
+    notice.textContent = "A kalkuláció elkészült.";
+
+      return {
+        name: product.name,
+        color: document.getElementById("mosquitoColor").selectedOptions[0].textContent,
+exactColor: document.getElementById("mosquitoExactColor").value.trim(),
+        width,
+        height,
+        quantity,
+        materialSelling: materialTotal + profitAmount,
+        motorSelling: 0,
+        laborCost: product.labor,
+        sellingPrice,
+        total: totalPrice
+    };
+}
+
+
+// SZÚNYOGHÁLÓ HOZZÁADÁSA AZ AJÁNLATHOZ
+
+const mosquitoItems = [];
+
+document.getElementById("addMosquito").addEventListener(
+    "click",
+    () => {
+        const item = calculateMosquito();
+
+        if (!item) return;
+
+        mosquitoItems.push(item);
+
+        offerItems.push({
+            name: item.name,
+note: document.getElementById("mosquitoNote").value.trim(),
+            color: item.color,
+exactColor: item.exactColor,
+            width: item.width,
+            height: item.height,
+            quantity: item.quantity,
+            materialSelling: item.materialSelling,
+            motorSelling: 0,
+            laborCost: item.laborCost,
+            total: item.total,
+            sourceType: "mosquito",
+            sourceItem: item
+        });
+
+        renderMosquitoItems();
+        renderOfferItems();
+    }
+);
+
+// SZÚNYOGHÁLÓ TÁBLÁZAT FRISSÍTÉSE
+
+function renderMosquitoItems() {
+
+    const tbody =
+        document.getElementById("mosquitoItems");
+
+    tbody.innerHTML = "";
+
+    let grandTotal = 0;
+
+    mosquitoItems.forEach((item, index) => {
+
+        grandTotal += item.total;
+
+        const row = document.createElement("tr");
+
+        const cells = [
+            item.name + " – " + item.color,
+            item.width + " × " + item.height,
+            item.quantity + " db",
+            money(item.total)
+        ];
+
+        cells.forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            row.appendChild(td);
+        });
+
+        const deleteCell = document.createElement("td");
+
+        const deleteButton =
+            document.createElement("button");
+
+        deleteButton.className = "catalog-delete";
+        deleteButton.textContent = "×";
+        deleteButton.type = "button";
+        deleteButton.title = "Tétel törlése";
+
+deleteButton.addEventListener("click", () => {
+
+    const deletedItem = item;
+
+    const offerIndex = offerItems.findIndex(
+        offerItem => offerItem.sourceItem === deletedItem
+    );
+
+    if (offerIndex !== -1) {
+        offerItems.splice(offerIndex, 1);
+    }
+
+    mosquitoItems.splice(index, 1);
+
+    renderMosquitoItems();
+    renderOfferItems();
+
+});
+
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+
+        tbody.appendChild(row);
+    });
+
+    document.getElementById("mosquitoGrandTotal").textContent =
+        money(grandTotal);
+}
+// ÚJ PDF DOKUMENTUM LÉTREHOZÁSA
+async function createOfferDocument() {
+    const pdfDoc = await PDFLib.PDFDocument.create();
+
+    pdfDoc.registerFontkit(fontkit);
+
+    const fontResponse = await fetch("./DejaVuSans.ttf");
+
+    if (!fontResponse.ok) {
+        throw new Error("Nem található a DejaVuSans.ttf betűtípus!");
+    }
+
+    const fontBytes = await fontResponse.arrayBuffer();
+    const font = await pdfDoc.embedFont(fontBytes);
+const logoResponse = await fetch("./hafiredony_logo_atlatszo.png");
+
+if (!logoResponse.ok) {
+    throw new Error("Nem található a HafiRedőny logó!");
+}
+
+const logoBytes = await logoResponse.arrayBuffer();
+const logoImage = await pdfDoc.embedPng(logoBytes);
+const boldFontResponse = await fetch("DejaVuSans-Bold.ttf");
+const boldFontBytes = await boldFontResponse.arrayBuffer();
+const boldFont = await pdfDoc.embedFont(boldFontBytes);
+
+    return { pdfDoc, font, boldFont, logoImage };
+}
+
+// ÚJ, DINAMIKUS PDF ÁRAJÁNLAT EXPORT
+document.getElementById("exportOfferPdf").addEventListener("click", async () => {
+    try {
+        if (!offerItems.length) {
+            throw new Error("Még nincs egyetlen ajánlati tétel sem!");
+        }
+
+        const { pdfDoc, font, boldFont, logoImage } = await createOfferDocument();
+const shieldBytes = await fetch("shield-check.png").then(res => res.arrayBuffer());
+const shieldImage = await pdfDoc.embedPng(shieldBytes);
+const calendarBytes = await fetch("calendar.png").then(res => res.arrayBuffer());
+const calendarImage = await pdfDoc.embedPng(calendarBytes);
+const toolBytes = await fetch("tool.png").then(res => res.arrayBuffer());
+const toolImage = await pdfDoc.embedPng(toolBytes);
+const infoBytes = await fetch("info.png").then(res => res.arrayBuffer());
+const infoImage = await pdfDoc.embedPng(infoBytes);
+const productionWeeks = Number(document.getElementById("productionWeeks").value) || 4;
+
+        const pageWidth = 595.28;
+        const pageHeight = 841.89;
+        const margin = 36;
+
+        const anthracite = PDFLib.rgb(0.18, 0.20, 0.22);
+        const darkText = PDFLib.rgb(0.15, 0.16, 0.18);
+        const lightGray = PDFLib.rgb(0.95, 0.95, 0.95);
+        const borderGray = PDFLib.rgb(0.84, 0.84, 0.84);
+        const white = PDFLib.rgb(1, 1, 1);
+
+        let page;
+        let y;
+
+        function drawText(text, x, yPosition, size = 9, color = darkText, bold = false) {
+    page.drawText(String(text ?? ""), {
+        x,
+        y: yPosition,
+        size,
+        font: bold ? boldFont : font,
+        color
+    });
+}
+        
+
+function wrapText(text, size, maxWidth) {
+    const paragraphs = String(text ?? "").split(/\r?\n/);
+    const lines = [];
+
+    for (const paragraph of paragraphs) {
+        const words = paragraph.trim().split(/[ \t]+/);
+        let line = "";
+
+        for (const word of words) {
+            if (!word) continue;
+
+            const candidate = line ? line + " " + word : word;
+
+            if (font.widthOfTextAtSize(candidate, size) <= maxWidth) {
+                line = candidate;
+            } else {
+                if (line) lines.push(line);
+                line = word;
+            }
+        }
+
+        if (line) lines.push(line);
+    }
+
+    return lines.length ? lines : [""];
+}
+
+        function drawHeader() {
+            page.drawRectangle({
+                x: 0,
+                y: pageHeight - 100,
+                width: pageWidth,
+                height: 100,
+                color: anthracite
+            });
+
+            const logoHeight = 40;
+const logoWidth = (logoImage.width / logoImage.height) * logoHeight;
+
+page.drawImage(logoImage, {
+    x: margin,
+    y: pageHeight - 70,
+    width: logoWidth,
+    height: logoHeight
+});
+            drawText("ÁRAJÁNLAT", pageWidth - 155, pageHeight - 48, 17, white);
+
+            drawText(
+                "Dátum: " + (document.getElementById("offerDate").value || "—"),
+                pageWidth - 155,
+                pageHeight - 70,
+                10,
+                white
+            );
+        }
+
+        const columns = [
+            { title: "#", width: 55, value: (item, i) => String(i + 1) },
+{ title: "Termék", width: 90, value: item => item.name.replace(/^Alumínium redőny.*/, "Alumínium redőny") },
+           { title: "Szín", width: 52, value: item => item.exactColor || item.color },
+            { title: "Méret", width: 62, value: item => item.width + " x " + item.height },
+            { title: "Db", width: 28, value: item => item.quantity },
+            { title: "Anyag", width: 65, value: item => money(item.materialSelling * item.quantity) },
+           { title: "Motor", width: 65, value: item => money(item.motorSelling * item.quantity) },
+         { title: "Munkadíj", width: 65, value: item => money(item.laborCost * item.quantity) },
+            { title: "Összesen", width: 66, value: item => money(item.total) }
+        ];
+
+        const tableWidth = columns.reduce((sum, column) => sum + column.width, 0);
+
+        function drawTableHeader() {
+            const headerHeight = 28;
+
+            page.drawRectangle({
+                x: margin,
+                y: y - headerHeight,
+                width: tableWidth,
+                height: headerHeight,
+                color: anthracite
+            });
+
+          let x = margin;
+
+columns.forEach(column => {
+    const textWidth = font.widthOfTextAtSize(column.title, 10);
+
+    drawText(
+        column.title,
+        x + (column.width - textWidth) / 2,
+        y - 18,
+        10,
+        white
+    );
+
+    x += column.width;
+});
+
+            y -= headerHeight;
+        }
+
+        function addPage(firstPage = false) {
+            page = pdfDoc.addPage([pageWidth, pageHeight]);
+
+            drawHeader();
+
+            if (firstPage) {
+                y = pageHeight - 125;
+
+                drawText("ÜGYFÉL ADATAI", margin, y, 13, anthracite);
+                y -= 25;
+
+                const customerFields = [
+                    ["Név:", document.getElementById("customerName").value],
+                    ["Cím:", document.getElementById("customerAddress").value],
+                    ["Telefon:", document.getElementById("customerPhone").value],
+                    ["E-mail:", document.getElementById("customerEmail").value]
+                ];
+
+                customerFields.forEach((field, index) => {
+                    drawText(field[0], margin, y, 9);
+                    const lines = wrapText(field[1] || "—", 9, 400);
+
+                    lines.forEach((line, lineIndex) => {
+                        drawText(line, margin + 75, y - lineIndex * 11, 9);
+                    });
+
+                    y -= Math.max(19, lines.length * 11 + 5);
+                });
+
+                y -= 12;
+                drawText("AJÁNLAT TÉTELEI", margin, y, 13, anthracite);
+                y -= 15;
+            } else {
+                y = pageHeight - 125;
+                drawText("AJÁNLAT TÉTELEI – FOLYTATÁS", margin, y, 13, anthracite);
+                y -= 20;
+            }
+
+            drawTableHeader();
+        }
+
+        addPage(true);
+
+        offerItems.forEach((item, index) => {
+            const cellLines = columns.map(column =>
+                wrapText(column.value(item, index), 10, column.width - 8)
+            );
+
+const noteLines = item.note
+    ? wrapText(item.note, 6, columns[0].width - 8)
+    : [];
+
+const maxLines = Math.max(
+    ...cellLines.map(lines => lines.length),
+    noteLines.length ? noteLines.length + 1 : 1
+);
+
+const rowHeight = Math.max(26, maxLines * 11 + 14);
+
+            if (y - rowHeight < 150) {
+                addPage(false);
+            }
+
+            page.drawRectangle({
+                x: margin,
+                y: y - rowHeight,
+                width: tableWidth,
+                height: rowHeight,
+                color: index % 2 === 0 ? lightGray : white,
+                borderColor: borderGray,
+                borderWidth: 0.4
+            });
+
+            let x = margin;
+            columns.forEach((column, columnIndex) => {
+      const lines = cellLines[columnIndex];
+
+    if (columnIndex === 0) {
+        const noteGap = noteLines.length > 0 ? 4 : 0;
+        const contentHeight =
+            lines.length * 11 +
+            noteGap +
+            noteLines.length * 9;
+
+        const firstBaseline =
+            y - (rowHeight - contentHeight) / 2 - 8;
+
+        lines.forEach((line, lineIndex) => {
+            drawText(
+                line,
+                x + (column.width - font.widthOfTextAtSize(line, 9)) / 2,
+                firstBaseline - lineIndex * 11,
+                9,
+                darkText,
+                true
+            );
+        });
+
+        noteLines.forEach((line, lineIndex) => {
+            drawText(
+                line,
+                x + (column.width - font.widthOfTextAtSize(line, 5)) / 2,
+                firstBaseline - lines.length * 11 - noteGap - lineIndex * 9,
+                9,
+                darkText
+            );
+        });
+
+        } else {
+        const contentHeight = lines.length * 11;
+        const firstBaseline =
+            y - (rowHeight - contentHeight) / 2 - 9;
+
+        lines.forEach((line, lineIndex) => {
+            const textWidth = font.widthOfTextAtSize(line, 9);
+
+            drawText(
+                line,
+                x + (column.width - textWidth) / 2,
+                firstBaseline - lineIndex * 11,
+                9,
+                darkText
+            );
+        });
+    }
+
+       x += column.width;
+});
+        y -= rowHeight;
+        });
+
+        const total = offerItems.reduce(
+            (sum, item) => sum + Number(item.total || 0),
+            0
+        );
+
+if (y - 220 < 160) {
+    addPage(false);
+}
+        y -= 30;
+
+        page.drawRectangle({
+            x: pageWidth - 230,
+            y: y - 30,
+            width: 194,
+            height: 42,
+            color: anthracite
+        });
+
+        drawText("VÉGÖSSZEG", pageWidth - 218, y - 5, 10, white);
+        drawText(money(total), pageWidth - 218, y - 20, 14, white);
+        // Antracit információs kártyák – 2 x 2 elrendezés
+        const cardGap = 12;
+        const cardWidth = (tableWidth - cardGap) / 2;
+        const cardHeight = 72;
+        const cardTop = y - 48;
+
+        const infoCards = [
+    {
+        icon: "G",
+        title: "MINŐSÉG ÉS GARANCIA",
+        text: "Prémium alapanyagok, precíz kivitelezés.\n2 év garancia minden termékre és \nszerelésre.",
+        
+    },
+    {
+        icon: "+",
+        title: "TELJES KÖRŰ SZOLGÁLTATÁS",
+        text: "Felmérés, kiszállítás és szakszerű szerelés a munkadíjban,",
+       
+    },
+    {
+        icon: "T",
+        title: "GYÁRTÁS ÉS SZERELÉS",
+        text: "Elkészülés után telefonon egyeztetjük a szerelést.\nGyártási idő: minimum " + productionWeeks + " hét az ajánlat elfogadásától.",
+       
+    },
+    {
+        icon: "i",
+        title: "FONTOS TUDNIVALÓK",
+        text: "Számlaképes, alanyi adómentes árak, ÁFA nélkül.\nAz ajánlat 2 hétig érvényes.",
+        
+    }
+];
+        // Valódi, vektoros pajzs ikon
+        function drawShieldIcon(x, y) {
+            const white = PDFLib.rgb(1, 1, 1);
+
+            page.drawLine({
+                start: { x: x - 7, y: y + 7 },
+                end: { x: x + 7, y: y + 7 },
+                thickness: 2,
+                color: white
+            });
+
+            page.drawLine({
+                start: { x: x - 7, y: y + 7 },
+                end: { x: x - 6, y: y - 3 },
+                thickness: 2,
+                color: white
+            });
+
+            page.drawLine({
+                start: { x: x - 6, y: y - 3 },
+                end: { x: x, y: y - 9 },
+                thickness: 2,
+                color: white
+            });
+
+            page.drawLine({
+                start: { x: x, y: y - 9 },
+                end: { x: x + 6, y: y - 3 },
+                thickness: 2,
+                color: white
+            });
+
+            page.drawLine({
+                start: { x: x + 6, y: y - 3 },
+                end: { x: x + 7, y: y + 7 },
+                thickness: 2,
+                color: white
+            });
+
+            page.drawLine({
+                start: { x: x - 3, y: y },
+                end: { x: x - 0.5, y: y - 3 },
+                thickness: 2,
+                color: white
+            });
+
+            page.drawLine({
+                start: { x: x - 0.5, y: y - 3 },
+                end: { x: x + 4, y: y + 3 },
+                thickness: 2,
+                color: white
+            });
+        }
+        infoCards.forEach((card, index) => {
+            const col = index % 2;
+            const row = Math.floor(index / 2);
+
+            const x = margin + col * (cardWidth + cardGap);
+            const top = cardTop - row * (cardHeight + 12);
+            const bottom = top - cardHeight;
+
+            page.drawRectangle({
+                x,
+                y: bottom,
+                width: cardWidth,
+                height: cardHeight,
+                color: PDFLib.rgb(1, 1, 1),
+                borderColor: borderGray,
+                borderWidth: 0.8
+            });
+
+            page.drawCircle({
+                x: x + 19,
+                y: bottom + 36,
+                size: 15,
+                color: PDFLib.rgb(54 / 255, 58 / 255, 63 / 255)
+            });
+
+if (index === 0) {
+    page.drawImage(shieldImage, {
+        x: x + 8,
+        y: bottom + 25,
+        width: 22,
+        height: 22
+    });
+} else if (index === 1) {
+    page.drawImage(toolImage, {
+        x: x + 8,
+        y: bottom + 25,
+        width: 22,
+        height: 22
+    });
+} else if (index === 2) {
+    page.drawImage(calendarImage, {
+        x: x + 8,
+        y: bottom + 25,
+        width: 22,
+        height: 22
+    });
+} else {
+    page.drawImage(infoImage, {
+        x: x + 8,
+        y: bottom + 25,
+        width: 22,
+        height: 22
+    });
+}
+page.drawLine({
+ start: { x: x + 44, y: bottom + 16 },
+end: { x: x + 44, y: bottom + 56 },
+    thickness: 0.9,
+    color: PDFLib.rgb(50 / 255, 53 / 255, 58 / 255)
+});
+            page.drawText(card.title, {
+               x: x + 49,
+                y: bottom + 50,
+                size: 10,
+                font: boldFont,
+                color: anthracite
+            });
+
+
+
+const cardTextLines = card.text
+    ? wrapText(card.text, 9, cardWidth - 55)
+    : [];
+
+if (cardTextLines.length > 0) {
+    const lineHeight = 12;
+    const totalTextHeight = cardTextLines.length * lineHeight;
+    const startY = bottom + 38;
+
+    cardTextLines.forEach((line, index) => {
+        page.drawText(line, {
+            x: x + 49,
+            y: startY - index * lineHeight,
+            size: 9,
+            font: /gyártási idő|elfogadásától|2 év garancia|szerelésre|2 hétig/i.test(line) ? boldFont : font,
+            color: darkText
+        });
+    });
+}
+        });
+       
+
+        const pages = pdfDoc.getPages();
+
+        pages.forEach((currentPage, index) => {
+           currentPage.drawLine({
+    start: { x: margin, y: index === pages.length - 1 ? 150 : 42 },
+    end: { x: pageWidth - margin, y: index === pages.length - 1 ? 150 : 42 },
+    thickness: 0.5,
+    color: borderGray
+});
+
+           if (index !== pages.length - 1) {
+    currentPage.drawText("HafiRedőny | Árajánlat", {
+        x: margin,
+        y: 27,
+        size: 8,
+        font,
+        color: darkText
+    });
+}
+if (index === pages.length - 1) {
+    const footerLines = [
+        "| HafiRedőny Árnyékolástechnika |",
+        "+36 20 468 3161 • +36 30 474 7192",
+        "hafiredony@gmail.com | info@hafiredony.hu | megrendeles@hafiredony.hu",
+        "Haffner Alfréd János E.V.",
+        "www.hafiredony.hu",
+        "11715007-21548970-00000000"
+    ];
+
+    footerLines.forEach((text, i) => {
+        const size = i === 0 ? 9 : 7;
+        const textWidth = font.widthOfTextAtSize(text, size);
+
+        currentPage.drawText(text, {
+            x: (pageWidth - textWidth) / 2,
+            y: 132 - i * 13,
+            size,
+            font,
+            color: darkText
+        });
+    });
+}
+            currentPage.drawText(
+                "Oldal " + (index + 1) + " / " + pages.length,
+                {
+                    x: pageWidth - 100,
+                    y: 27,
+                    size: 8,
+                    font,
+                    color: darkText
+                }
+            );
+        });
+
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+      const offerIdentifier = document.getElementById("offerIdentifier").value.trim();
+const safeIdentifier = offerIdentifier.replace(/[\\/:*?"<>|]/g, "-");
+link.download = (safeIdentifier || "HafiRedony-arajanlat") + ".pdf";
+        link.click();
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+    } catch (error) {
+        console.error("PDF export hiba:", error);
+        alert("Nem sikerült elkészíteni az ajánlatot: " + error.message);
+    }
+});
+// INDÍTÁS
+
+updateColors();
+
+</script>
+
+
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
